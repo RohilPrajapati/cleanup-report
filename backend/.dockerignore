@@ -19,8 +19,8 @@ venv/
 
 # Environment / config files
 .env
-*.env
-.env.*
+# *.env
+# .env.*
 settings_local.py
 
 # OS files

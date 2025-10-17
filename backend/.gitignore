@@ -1,2 +1,36 @@
+# Python
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+*.venv
 .env
+
+
+# Django
+*.log
+*.sqlite3
+media/
+staticfiles/
+*.pot
+*.pyc
+
+# Docker
+*.dockerignore
+docker-compose.override.yml
 .docker.env
+**/tmp/
+**/cache/
+*.pid
+
+# Ignore built images / volumes
+docker-compose.override.yml
+*.local
+*.bak
+
+# Ignore PyCharm / VSCode
+.idea/
+.vscode/
+
+# Mac / Linux
+.DS_Store

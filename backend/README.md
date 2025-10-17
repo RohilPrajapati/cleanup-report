@@ -36,26 +36,14 @@ main-proj-file/
 ## 🚀 Features
 
 ### User Module
-- /api/cleanup/trigger/ : REQUEST: POST
+- /api/cleanup/trigger/  
+    REQUEST: POST
     - remove inactive user who inactiv for 30 days or is_active is False
     - store when task was executed and how many inactive user is deleted and how many are active 
 - /api/reports/latest/
+    REQUEST: GET  
     - paginated response with list of time cleanup task was run
 - Dockerize the app using Dockerfile and compose
-
----
-
----
-
-## TODO
-
-- frontend implementation
-- authentication
-- notification
-- testing
-- celery result  (is not working need to check)
-
----
 
 ## ⚙️ Installation
 
