@@ -54,7 +54,7 @@ This includes:
 ![trigger response](./screenshot/trigger_response.png)
 
 ### console log of task being executed
-![console task being executed](./screenshot/console_for%20task%20being%20executed.png)
+![console task being executed](./screenshot/console_for_task_being_executed.png)
 
 
 ---
