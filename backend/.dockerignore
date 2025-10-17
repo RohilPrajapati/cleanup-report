@@ -1,0 +1,51 @@
+# Python bytecode
+**/__pycache__/**
+*.py[cod]
+*$py.class
+
+# Virtual environments
+venv/
+.venv/
+.uv/
+
+# Django local settings and database
+
+# demo only allowing sqlite db inside container
+# *.sqlite3
+# db.sqlite3
+*.log
+*.pot
+*.pyc
+
+# Environment / config files
+.env
+*.env
+.env.*
+settings_local.py
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Git
+.git
+.gitignore
+
+# IDEs / editors
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# uv cache / lock files
+.uv/cache/
+.uv/lock/
+
+# Coverage and test reports
+htmlcov/
+.coverage
+pytest_cache/
+
+# Dockerfile artifacts
+Dockerfile*
+docker-compose.override.yml
