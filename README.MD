@@ -21,7 +21,7 @@ This includes:
 ![trigger response](./screenshot/trigger_response.png)
 
 ### console log of task being executed
-![console task being executed](./screenshot/console_for task being executed.png)
+![console task being executed]("./screenshot/console_for task being executed.png")
 
 
 ---
