@@ -1,0 +1,1 @@
+export const CLEAN_UP_REPORT_URL = '/reports/latest/'
