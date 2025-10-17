@@ -123,7 +123,7 @@ Run celery beat
 uv run celery -A config beat -l info --scheduler django_celery_beat.schedulers:DatabaseScheduler
 ```
 This will:
-- this will trigger task based on schedule data from database use for corn jobs periodic task trigger
+- this will trigger task based on schedule data from database use for cron jobs periodic task trigger
 
 
 Run django app
