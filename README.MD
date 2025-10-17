@@ -15,9 +15,13 @@ This includes:
 ---
 ## Screen Shot
 ### cleanup executed task list
-![home page](./screenshot/report_list.png)
+![report list](./screenshot/report_list.png)
 
 ### Manual Trigger response which queue task for cleanup
-![after search page](./screenshot/trigger_response.png)
+![trigger response](./screenshot/trigger_response.png)
+
+### console log of task being executed
+![console task being executed](./screenshot/console_for task being executed.png)
+
 
 ---
