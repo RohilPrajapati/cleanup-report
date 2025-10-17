@@ -17,16 +17,36 @@ This includes:
 ## 📝 TODO
 
 - frontend implementation
-- authentication
-- notification
-- testing
-- celery result  (is not working need to check)
+    - alert message issue
+    - ui button for manual trigger is in UI but function remaining
+- authentication [need to check refresh token is working or not]
+- notification [email notification, email submission remaining]
+- testing [view wise testing remaining]
+- documentation
+    - frontend README.md file remaining
+    - api endpoint detail documentation
+    - clean up main README.md file 
 
 ---
 
+## Screen Shot of UI
+#### Project Front-end Overview
 
----
-## Screen Shot
+- User Interface (UI) and CSS: The UI components and styling have been designed and generated with the assistance of an LLM (Large Language Model).
+
+- Project Structure and Other Components: The overall project structure, logic, functionalities have been developed manually.
+
+
+### login page
+![login page](./screenshot/frontend_login.png)
+
+### Clean Up Report Page
+![cleanup report page](./screenshot/report_latest.png)
+
+### Clean Up list of Data with server side pagination
+![cleanup report record table](./screenshot/list_previous_run_report.png)
+
+## Screen Shot of API
 ### cleanup executed task list
 ![report list](./screenshot/report_list.png)
 
@@ -40,6 +60,19 @@ This includes:
 ---
 
 ### Run Project using Docker Compose
+
+```bash
+# create .docker.env with the help of .example.env
+
+
+# Note: run this command after build
+# create superuser for login credentials 
+docker-compose run backend uv run python manage.py createsuperuser
+
+# populate random 50 row data to database
+docker-compose run backend uv run python populate_users.py
+```
+
 Run all the container
 ```bash
 docker-compose up --build
