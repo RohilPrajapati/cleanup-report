@@ -13,6 +13,19 @@ This includes:
 
 
 ---
+
+## 📝 TODO
+
+- frontend implementation
+- authentication
+- notification
+- testing
+- celery result  (is not working need to check)
+
+---
+
+
+---
 ## Screen Shot
 ### cleanup executed task list
 ![report list](./screenshot/report_list.png)
@@ -25,3 +38,29 @@ This includes:
 
 
 ---
+
+### Run Project using Docker Compose
+Run all the container
+```bash
+docker-compose up --build
+```
+- ```up```: Starts all services defined in docker-compose.yml.
+- ```--build```: Forces rebuilding images before starting containers.
+- Add ```-d``` if you want to run containers in detached/background mode
+
+Once started, your app will be available at:
+http://localhost:80
+
+Run all the container
+```bash
+docker-compose down
+```
+Stops all running containers.
+
+Removes containers, networks, and default volumes created by docker-compose up.
+
+If you want to also remove images and named volumes, you can use:
+```bash
+docker-compose down --rmi all -v
+```
+

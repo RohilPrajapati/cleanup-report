@@ -29,7 +29,7 @@ SECRET_KEY = os.getenv("SECRET_KEY")
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = os.environ.get("DEBUG", "False") == "True"
 
-ALLOWED_HOSTS = ["*"] # TODO need to change to TO Frontend url once frontend is build
+ALLOWED_HOSTS = ["*"]  # TODO need to change to TO Frontend url once frontend is build
 
 
 # Application definition
@@ -44,6 +44,7 @@ INSTALLED_APPS = [
     # Third party App
     "django_celery_results",
     "django_celery_beat",
+    "rest_framework",
     # Local App
     "user",
 ]
@@ -138,3 +139,27 @@ CELERY_RESULT_BACKEND = os.getenv("CELERY_RESULT_BACKEND")
 # Optional: enable task result expiry and timezone
 CELERY_RESULT_EXPIRES = 3600
 CELERY_TIMEZONE = "UTC"
+
+CACHES = {
+    "default": {
+        "BACKEND": "django_redis.cache.RedisCache",
+        "LOCATION": os.getenv("REDIS_URL"),
+        "OPTIONS": {
+            "CLIENT_CLASS": "django_redis.client.DefaultClient",
+        },
+    }
+}
+
+REST_FRAMEWORK = {
+    "DEFAULT_THROTTLE_CLASSES": [
+        "rest_framework.throttling.UserRateThrottle",
+        "rest_framework.throttling.AnonRateThrottle",
+        "rest_framework.throttling.ScopedRateThrottle",
+    ],
+    "DEFAULT_THROTTLE_RATES": {
+        "user": "30/minute",
+        "anon": "10/minute",
+        "manual_clean_up": "1/hours",  # Only this view has 1 requests/per hour
+        "default": "30/minute",  # Only this view has 30 requests/per minutes
+    }
+}

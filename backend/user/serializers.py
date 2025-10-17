@@ -5,4 +5,4 @@ from user.models import CleanUpReport
 class CleanUpReportModelSerializer(serializers.ModelSerializer):
     class Meta:
         model = CleanUpReport
-        fields = '__all__'
+        fields = "__all__"

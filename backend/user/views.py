@@ -1,7 +1,7 @@
 from rest_framework.views import APIView
 from rest_framework import status
-
 from rest_framework.response import Response
+from rest_framework.throttling import ScopedRateThrottle
 
 from user.models import CleanUpReport
 from user.serializers import CleanUpReportModelSerializer
@@ -19,6 +19,8 @@ class CleanUpReportAPIView(APIView, PagePagination):
 
 
 class CleanUpTrigger(APIView):
+    throttle_scope = "manual_clean_up"
+
     def post(self, request):
         cleanup_inactive_users.delay()
         return Response(

@@ -15,9 +15,6 @@ RUN apt-get update && apt-get install -y \
     curl \
     && rm -rf /var/lib/apt/lists/*
 
-# Copy requirements files
-COPY pyproject.toml uv.lock /app/
-
 # The installer requires curl (and certificates) to download the release archive
 RUN apt-get update && apt-get install -y --no-install-recommends curl ca-certificates
 
@@ -29,6 +26,9 @@ RUN sh /uv-installer.sh && rm /uv-installer.sh
 
 # Ensure the installed binary is on the `PATH`
 ENV PATH="/root/.local/bin/:$PATH"
+
+# Copy requirements files
+COPY pyproject.toml uv.lock /app/
 
 # Copy project
 COPY . /app
