@@ -9,7 +9,7 @@ from user.models import User, CleanUpReport
 def cleanup_inactive_users():
     """Delete users inactive for more than 30 days and log the cleanup."""
     threshold_date = timezone.now() - timedelta(days=30)
-    inactive_users = User.objects.filter(Q(is_active=False) | Q(last_login__gt=threshold_date))
+    inactive_users = User.objects.filter(Q(is_active=False) | Q(last_login__lt=threshold_date))
 
     users_deleted_count = inactive_users.count()
     inactive_users.delete()
