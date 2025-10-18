@@ -28,7 +28,6 @@ For detailed instructions on setting up and running the Django backend, see the 
 - testing [view wise testing remaining]
 - documentation
     - api endpoint detail documentation
-- notification trigger for submission remaining 
 
 ---
 
