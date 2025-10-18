@@ -117,4 +117,4 @@ This will:
 Run django app
 ```bash
 uv run python manage.py runserver
-```
+``` 

@@ -21,6 +21,7 @@ from django.contrib.auth import get_user_model
 
 AuthUser = get_user_model()
 
+
 # Create your views here.
 class CleanUpReportAPIView(APIView, PagePagination):
     def get(self, request):
@@ -34,7 +35,7 @@ class CleanUpTrigger(APIView):
     throttle_scope = "manual_clean_up"
 
     def post(self, request):
-        cleanup_inactive_users.delay()
+        cleanup_inactive_users.delay(request.user.email)
         return Response(
             {"detail": "Request to CleanUp trigger"}, status=status.HTTP_200_OK
         )
@@ -46,6 +47,7 @@ class CleanUpTrigger(APIView):
 class LoginAPIView(APIView):
     throttle_scope = "login_per_day"
     permission_classes = [AllowAny]
+
     def post(self, request):
         serializer = LoginSerializer(data=request.data)
         serializer.is_valid(raise_exception=True)
@@ -132,4 +134,6 @@ class RefreshTokenAPIView(TokenRefreshView):
             except AttributeError:
                 # Blacklist app may not be installed/enabled
                 pass
-        return Response({"token":tokens, "user_detail": user_data}, status=status.HTTP_200_OK)
+        return Response(
+            {"token": tokens, "user_detail": user_data}, status=status.HTTP_200_OK
+        )
