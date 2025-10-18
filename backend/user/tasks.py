@@ -46,7 +46,6 @@ def cleanup_inactive_users(self):
         )
 
         # Notify admin after final failure
-        print(len(str(exc)))
         mail_admins(
             subject="Celery Cleanup Task Failed",
             message=str(exc),
