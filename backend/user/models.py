@@ -9,6 +9,17 @@ class User(models.Model):
 
     def __str__(self):
         return f"{self.email}_{self.last_login.date()}"
+    
+class DeadLetterTask(models.Model):
+    task_name = models.CharField(max_length=255)
+    args = models.JSONField()
+    kwargs = models.JSONField()
+    error = models.TextField()
+    retries = models.IntegerField(default=0)
+    timestamp = models.DateTimeField(auto_now_add=True)
+
+    def __str__(self):
+        return f"{self.task_name} failed at {self.timestamp}"
 
 
 class CleanUpReport(models.Model):
