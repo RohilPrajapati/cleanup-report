@@ -23,6 +23,9 @@ def cleanup_inactive_users(self):
 
             active_users_remaining = User.objects.filter(is_active=True).count()
 
+            # error
+            # raise Exception("Some issue with task. might be any component fail api not working etc")
+
             # Log cleanup result
             CleanUpReport.objects.create(
                 users_deleted=users_deleted_count,
@@ -46,7 +49,6 @@ def cleanup_inactive_users(self):
         )
 
         # Notify admin after final failure
-        print(len(str(exc)))
         mail_admins(
             subject="Celery Cleanup Task Failed",
             message=str(exc),

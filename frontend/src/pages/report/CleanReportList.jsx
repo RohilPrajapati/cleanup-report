@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
-import { fetchCleanUpReport } from "./api/call";
+import { fetchCleanUpReport, triggerCleanUpReport } from "./api/call";
+import { notification } from 'antd';
 
 const CleanUpReportList = () => {
   const [reports, setReports] = useState([]);
@@ -23,6 +24,32 @@ const CleanUpReportList = () => {
     } finally {
       setLoading(false);
     }
+  };
+
+  const triggerCleanUp = async (page = 1) => {
+    await triggerCleanUpReport().then((res) => {
+      notification.success({
+        message: "Request Successfully Submitted",
+        description: null,
+        duration: 4,
+        placement: 'topRight',
+        style: { zIndex: 99999 }
+      });
+    }).catch((err) => {
+      console.log("inside error")
+      console.error(err);
+
+      const detail = err.response?.data?.detail || 'Please check your input and try again.';
+      console.log(detail)
+      notification.error({
+        message: detail,
+        description: null,
+        duration: 4,
+        placement: 'topRight',
+        style: { zIndex: 99999 }
+      });
+    });
+    await fetchReports(page);
   };
 
   // ✅ Only run once on mount
@@ -125,7 +152,7 @@ const CleanUpReportList = () => {
           </div>
         </div>
         <button
-          onClick={() => fetchReports(currentPage)}
+          onClick={() => triggerCleanUp(currentPage)}
           className="refresh-button"
         >
           <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
@@ -226,11 +253,10 @@ const CleanUpReportList = () => {
                 </td>
                 <td>
                   <span
-                    className={`badge ${
-                      report.users_deleted > 0
+                    className={`badge ${report.users_deleted > 0
                         ? "badge-warning"
                         : "badge-success"
-                    }`}
+                      }`}
                   >
                     {report.users_deleted}
                   </span>
