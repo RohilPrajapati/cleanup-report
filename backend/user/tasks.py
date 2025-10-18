@@ -23,6 +23,9 @@ def cleanup_inactive_users(self):
 
             active_users_remaining = User.objects.filter(is_active=True).count()
 
+            # error
+            # raise Exception("Some issue with task. might be any component fail api not working etc")
+
             # Log cleanup result
             CleanUpReport.objects.create(
                 users_deleted=users_deleted_count,
