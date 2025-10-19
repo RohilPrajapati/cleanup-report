@@ -36,6 +36,7 @@ COPY . /app
 RUN uv sync --locked
 RUN uv run python manage.py migrate
 RUN uv run python manage.py create_periodic_tasks 
+RUN uv run python manage.py collectstatic --noinput
 
 # Expose port (uv default)
 EXPOSE 8000
