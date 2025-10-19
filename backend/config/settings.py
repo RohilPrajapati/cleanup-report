@@ -128,18 +128,18 @@ USE_I18N = True
 USE_TZ = True
 
 
-# Static files (CSS, JavaScript, Images)
-# https://docs.djangoproject.com/en/5.2/howto/static-files/
 
-# the /api/ prefix needed for nginx hosting for static file 
+
 if os.environ.get('DJANGO_ENV') == 'production':
     FORCE_SCRIPT_NAME = '/api'
     USE_X_FORWARDED_HOST = True
+    STATIC_URL = '/api/static/'
 else:
-    ...
+    STATIC_URL = '/static/'
 
-STATIC_URL = '/static/'
-STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')  # collected here
+# Static files (CSS, JavaScript, Images)
+# https://docs.djangoproject.com/en/5.2/howto/static-files/
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
 # Default primary key field type
