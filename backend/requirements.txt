@@ -7,7 +7,9 @@ amqp==5.3.1 \
 asgiref==3.10.0 \
     --hash=sha256:aef8a81283a34d0ab31630c9b7dfe70c812c95eba78171367ca8745e88124734 \
     --hash=sha256:d89f2d8cd8b56dada7d52fa7dc8075baa08fb836560710d38c292a7a3f78c04e
-    # via django
+    # via
+    #   django
+    #   django-cors-headers
 billiard==4.2.2 \
     --hash=sha256:4bc05dcf0d1cc6addef470723aac2a6232f3c7ed7475b0b580473a9145829457 \
     --hash=sha256:e815017a062b714958463e07ba15981d802dc53d41c5b69d28c5a7c238f8ecf3
@@ -54,6 +56,7 @@ django==5.2 \
     #   backend
     #   django-celery-beat
     #   django-celery-results
+    #   django-cors-headers
     #   django-redis
     #   django-timezone-field
     #   djangorestframework
@@ -65,6 +68,10 @@ django-celery-beat==2.8.1 \
 django-celery-results==2.6.0 \
     --hash=sha256:9abcd836ae6b61063779244d8887a88fe80bbfaba143df36d3cb07034671277c \
     --hash=sha256:b9ccdca2695b98c7cbbb8dea742311ba9a92773d71d7b4944a676e69a7df1c73
+    # via backend
+django-cors-headers==4.9.0 \
+    --hash=sha256:15c7f20727f90044dcee2216a9fd7303741a864865f0c3657e28b7056f61b449 \
+    --hash=sha256:fe5d7cb59fdc2c8c646ce84b727ac2bca8912a247e6e68e1fb507372178e59e8
     # via backend
 django-redis==6.0.0 \
     --hash=sha256:20bf0063a8abee567eb5f77f375143c32810c8700c0674ced34737f8de4e36c0 \
@@ -159,3 +166,7 @@ wcwidth==0.2.14 \
     --hash=sha256:4d478375d31bc5395a3c55c40ccdf3354688364cd61c4f6adacaa9215d0b3605 \
     --hash=sha256:a7bb560c8aee30f9957e5f9895805edd20602f2d7f720186dfd906e82b4982e1
     # via prompt-toolkit
+whitenoise==6.11.0 \
+    --hash=sha256:0f5bfce6061ae6611cd9396a8231e088722e4fc67bc13a111be74c738d99375f \
+    --hash=sha256:b2aeb45950597236f53b5342b3121c5de69c8da0109362aee506ce88e022d258
+    # via backend
