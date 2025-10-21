@@ -68,7 +68,7 @@ const CleanUpReportList = () => {
   const formatDate = (timestamp) => {
     if (!timestamp) return "N/A";
     const date = new Date(timestamp);
-    return date.toLocaleString("en-US", {
+    return date.toLocaleString(undefined, {
       year: "numeric",
       month: "short",
       day: "numeric",
@@ -254,8 +254,8 @@ const CleanUpReportList = () => {
                 <td>
                   <span
                     className={`badge ${report.users_deleted > 0
-                        ? "badge-warning"
-                        : "badge-success"
+                      ? "badge-warning"
+                      : "badge-success"
                       }`}
                   >
                     {report.users_deleted}

@@ -19,13 +19,11 @@ const LoginForm = () => {
   const navigate = useNavigate();
   const handleSubmit = (values, { setSubmitting, resetForm }) => {
     login(values.username, values.password).then((res) => {
-          console.log("inside then")
           const { access, refresh } = res.data.token;
-          const {user} = res.data.user_detail
-
+          const user = JSON.stringify(res.data.user_detail);
           localStorage.setItem('access_token', access);
           localStorage.setItem('refresh_token', refresh);
-          localStorage.setItem('user', JSON.stringify(user));
+          localStorage.setItem('user', user);
           localStorage.setItem('auth', true);
 
           notification.success({
