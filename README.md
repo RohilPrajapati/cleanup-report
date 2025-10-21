@@ -19,6 +19,8 @@ For detailed instructions on setting up and running the Django backend, see the 
 - email reporting when clean task is executed
 - email error reporting to admin if any thing break
 - celery with dead letter queue implement to track failed task  
+- celery beat for clean up task scheduler
+- custom CLI command for registering periodic schedular, submission for assignment mail
 
 
 ---
