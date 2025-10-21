@@ -4,6 +4,7 @@ from django.utils import timezone
 from user.models import User, CleanUpReport
 from user.tasks import cleanup_inactive_users
 
+
 class CleanupInactiveUsersTaskTest(TestCase):
     def setUp(self):
         now = timezone.now()
@@ -17,14 +18,14 @@ class CleanupInactiveUsersTaskTest(TestCase):
         self.inactive_old = User.objects.create(
             email="inactive_old@example.com",
             last_login=now - timedelta(days=40),
-            is_active=False
+            is_active=False,
         )
 
         # Inactive user recent login (should NOT be deleted)
         self.inactive_recent = User.objects.create(
             email="inactive_recent@example.com",
             last_login=now - timedelta(days=10),
-            is_active=False
+            is_active=False,
         )
 
     def test_cleanup_task_deletes_correct_users(self):
@@ -34,7 +35,9 @@ class CleanupInactiveUsersTaskTest(TestCase):
         self.assertFalse(User.objects.filter(email="inactive_old@example.com").exists())
 
         # Check users that remain
-        self.assertFalse(User.objects.filter(email="inactive_recent@example.com").exists())
+        self.assertFalse(
+            User.objects.filter(email="inactive_recent@example.com").exists()
+        )
         print(User.objects.filter(email="active@example.com").exists())
         self.assertTrue(User.objects.filter(email="active@example.com").exists())
 

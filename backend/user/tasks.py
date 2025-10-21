@@ -9,7 +9,7 @@ from django.conf import settings
 
 
 @shared_task(bind=True, max_retries=2, default_retry_delay=30)
-def cleanup_inactive_users(self, email=None):
+def cleanup_inactive_users(self, to_email=None):
     """Delete users inactive for more than 30 days and log the cleanup."""
     try:
         threshold_date = timezone.now() - timedelta(days=30)
@@ -42,12 +42,13 @@ def cleanup_inactive_users(self, email=None):
 
             Timestamp: {timezone.now().strftime('%Y-%m-%d %H:%M:%S')}
             """
-            send_mail(
-                subject=subject,
-                message=message,
-                from_email=settings.DEFAULT_FROM_EMAIL,
-                recipient_list=[email],
-            )
+            if to_email:
+                send_mail(
+                    subject=subject,
+                    message=message,
+                    from_email=settings.DEFAULT_FROM_EMAIL,
+                    recipient_list=[to_email],
+                )
         return f"Deleted {users_deleted_count} users. {active_users_remaining} active users remaining."
 
     except Exception as exc:
