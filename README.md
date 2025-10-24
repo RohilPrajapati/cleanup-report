@@ -4,6 +4,8 @@ For detailed instructions on setting up and running the Django backend, see the 
 
 [Backend Setup & Instructions](backend/README.md)
 
+[Frontend Setup & Instructions](frontend/README.md)
+
 ## Table of Contents
 
 - [Features](#features)
