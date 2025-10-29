@@ -100,6 +100,9 @@ Run all the container
 ```bash
 # after creating .docker.env with the help of .example.env
 docker-compose up --build
+# first docker-compose up --build might not start scheduler 
+# scheduler might run before migration so if any error occur please restart 
+# known issue with volume mount using db.sqlite3
 ```
 - ```up```: Starts all services defined in docker-compose.yml.
 - ```--build```: Forces rebuilding images before starting containers.
