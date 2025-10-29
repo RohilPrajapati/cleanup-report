@@ -30,16 +30,20 @@ ENV PATH="/root/.local/bin/:$PATH"
 # Copy requirements files
 COPY pyproject.toml uv.lock /app/
 
+RUN uv sync --locked
+
 # Copy project
 COPY . /app
 
-RUN uv sync --locked
-RUN uv run python manage.py migrate
-RUN uv run python manage.py create_periodic_tasks 
-RUN uv run python manage.py collectstatic --noinput
+# Ensure directory for DB exists
+RUN mkdir -p /app/data
+
+# Copy entrypoint
+COPY entrypoint.sh /entrypoint.sh
+RUN chmod +x /entrypoint.sh
 
 # Expose port (uv default)
 EXPOSE 8000
 
 # Run Django with uv
-CMD ["uv", "run","gunicorn", "config.wsgi:application", "--bind", "0.0.0.0:8000", "--workers", "3"]
+ENTRYPOINT ["/entrypoint.sh"]

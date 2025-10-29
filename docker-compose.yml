@@ -13,50 +13,50 @@ services:
   backend:
     build:
       context: ./backend
+    image: backend:latest
     env_file:
       - ./backend/.docker.env
     volumes:
       # Only persist the SQLite database for dev
-      - ./backend/db.sqlite3:/app/db.sqlite3
+      - ./backend/data:/app/data
     ports:
       - "8000:8000"
     depends_on:
       - redis
     networks:
       - app_network
-    command: uv run gunicorn config.wsgi:application --bind 0.0.0.0:8000 --workers 3
+    command: web
 
   worker:
-    build:
-      context: ./backend
-    command: uv run celery -A config worker -l info
+    image: backend:latest
     env_file:
       - ./backend/.docker.env
     volumes:
-      - ./backend/db.sqlite3:/app/db.sqlite3
+      - ./backend/data:/app/data
     depends_on:
       - redis
+      - backend
     networks:
       - app_network
+    command: worker
 
   scheduler:
-    build:
-      context: ./backend
-    command: uv run celery -A config beat -l info --scheduler django_celery_beat.schedulers:DatabaseScheduler
+    image: backend:latest
     env_file:
       - ./backend/.docker.env
     volumes:
-      - ./backend/db.sqlite3:/app/db.sqlite3
+      - ./backend/data:/app/data
     depends_on:
       - redis
+      - backend
     networks:
       - app_network
+    command: beat
 
   frontend:
     build:
       context: ./frontend
     container_name: frontend
-    restart: always
     depends_on:
       - backend
     environment:
